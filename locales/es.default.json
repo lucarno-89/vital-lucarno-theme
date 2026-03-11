@@ -1,0 +1,11 @@
+{
+  "general": { "search": { "search": "Buscar" }, "pagination": { "previous": "Anterior", "next": "Siguiente" } },
+  "accessibility": { "skip_to_text": "Saltar al contenido" },
+  "products": {
+    "product": { "add_to_cart": "Agregar al carrito", "sold_out": "Agotado", "unavailable": "No disponible", "quantity": "Cantidad" }
+  },
+  "cart": {
+    "general": { "title": "Carrito", "empty": "Tu carrito está vacío", "checkout": "Finalizar compra", "continue_shopping": "Seguir comprando" }
+  },
+  "collections": { "general": { "view_all": "Ver todos" } }
+}
