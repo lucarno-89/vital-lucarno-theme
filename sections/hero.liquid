@@ -1,0 +1,92 @@
+<section class="vl-hero">
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="hero-dot"></span>
+        {{ section.settings.badge_text }}
+      </div>
+      <h1 class="hero-title">
+        {{ section.settings.title_line1 }}<br>
+        <span class="accent-green">{{ section.settings.title_line2 }}</span><br>
+        {{ section.settings.title_line3 }} <span class="accent-red">{{ section.settings.title_line4 }}</span>
+      </h1>
+      <p class="hero-desc">{{ section.settings.description }}</p>
+      <div class="hero-ctas">
+        <a href="{{ section.settings.cta1_url }}" class="btn-primary">
+          <i class="fa-solid fa-rocket"></i> {{ section.settings.cta1_text }}
+        </a>
+        <a href="{{ section.settings.cta2_url }}" class="btn-secondary">
+          <i class="fa-solid fa-flask"></i> {{ section.settings.cta2_text }}
+        </a>
+      </div>
+      <div class="hero-stats">
+        {% for i in (1..4) %}
+          {% assign val_key = 'stat' | append: i | append: '_value' %}
+          {% assign lbl_key = 'stat' | append: i | append: '_label' %}
+          <div class="stat-item">
+            <div class="stat-value">{{ section.settings[val_key] }}</div>
+            <div class="stat-label">{{ section.settings[lbl_key] }}</div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="glow-ring"></div>
+      <div class="glow-ring-2"></div>
+      <div class="hero-card">
+        <div class="hero-card-emoji">
+          {% if section.settings.featured_product != blank %}
+            {{ section.settings.featured_product.featured_image | image_url: width: 200 | image_tag: loading: 'lazy', alt: section.settings.featured_product.title, class: 'product-img' }}
+          {% else %}
+            💊
+          {% endif %}
+        </div>
+        <div class="hero-card-name">
+          {% if section.settings.featured_product != blank %}
+            {{ section.settings.featured_product.title }}
+          {% else %}
+            {{ section.settings.card_title }}
+          {% endif %}
+        </div>
+        <div class="hero-card-price">
+          {% if section.settings.featured_product != blank %}
+            {{ section.settings.featured_product.price | money }}
+          {% else %}
+            {{ section.settings.card_price }}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    { "type": "text", "id": "badge_text", "label": "Texto badge", "default": "NUEVA COLECCIÓN 2026" },
+    { "type": "text", "id": "title_line1", "label": "Título línea 1", "default": "POTENCIA TU" },
+    { "type": "text", "id": "title_line2", "label": "Título línea 2 (verde)", "default": "RENDIMIENTO" },
+    { "type": "text", "id": "title_line3", "label": "Título línea 3", "default": "AL" },
+    { "type": "text", "id": "title_line4", "label": "Título línea 4 (rojo)", "default": "MÁXIMO" },
+    { "type": "textarea", "id": "description", "label": "Descripción", "default": "Suplementos de alta tecnología formulados con ingredientes premium para atletas y personas activas." },
+    { "type": "text", "id": "cta1_text", "label": "Botón 1 texto", "default": "Ver Productos" },
+    { "type": "url", "id": "cta1_url", "label": "Botón 1 URL" },
+    { "type": "text", "id": "cta2_text", "label": "Botón 2 texto", "default": "¿Cómo Funciona?" },
+    { "type": "url", "id": "cta2_url", "label": "Botón 2 URL" },
+    { "type": "text", "id": "stat1_value", "label": "Stat 1 valor", "default": "+5K" },
+    { "type": "text", "id": "stat1_label", "label": "Stat 1 label", "default": "Clientes" },
+    { "type": "text", "id": "stat2_value", "label": "Stat 2 valor", "default": "98%" },
+    { "type": "text", "id": "stat2_label", "label": "Stat 2 label", "default": "Satisfacción" },
+    { "type": "text", "id": "stat3_value", "label": "Stat 3 valor", "default": "24h" },
+    { "type": "text", "id": "stat3_label", "label": "Stat 3 label", "default": "Envío" },
+    { "type": "text", "id": "stat4_value", "label": "Stat 4 valor", "default": "Col" },
+    { "type": "text", "id": "stat4_label", "label": "Stat 4 label", "default": "Nacional" },
+    { "type": "product", "id": "featured_product", "label": "Producto destacado en hero" },
+    { "type": "text", "id": "card_title", "label": "Título tarjeta (sin producto)", "default": "PRO COMPLEX 3.0" },
+    { "type": "text", "id": "card_price", "label": "Precio tarjeta", "default": "$89.900 COP" }
+  ],
+  "presets": [{ "name": "Hero" }]
+}
+{% endschema %}
