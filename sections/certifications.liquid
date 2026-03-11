@@ -1,0 +1,48 @@
+<div class="vl-section">
+  <div class="section-header text-center mb-3">
+    <span class="section-tag"><i class="fa-solid fa-shield-halved"></i> {{ section.settings.tag }}</span>
+    <h2 class="section-title">{{ section.settings.title }}<br><span class="text-green">{{ section.settings.title_accent }}</span></h2>
+  </div>
+  <div class="certs-grid">
+    {% for block in section.blocks %}
+      <div class="cert-card" {{ block.shopify_attributes }}>
+        <span class="cert-icon"><i class="{{ block.settings.icon }}"></i></span>
+        <div>
+          <div class="cert-title">{{ block.settings.title }}</div>
+          <div class="cert-desc">{{ block.settings.description }}</div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Certificaciones",
+  "settings": [
+    { "type": "text", "id": "tag", "label": "Etiqueta", "default": "Confianza" },
+    { "type": "text", "id": "title", "label": "Título", "default": "Certificados y" },
+    { "type": "text", "id": "title_accent", "label": "Acento", "default": "Respaldados" }
+  ],
+  "blocks": [
+    {
+      "type": "cert",
+      "name": "Certificación",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Icono FA", "default": "fa-solid fa-certificate" },
+        { "type": "text", "id": "title", "label": "Título", "default": "INVIMA" },
+        { "type": "text", "id": "description", "label": "Descripción", "default": "Registro sanitario vigente" }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Certificaciones",
+    "blocks": [
+      { "type": "cert", "settings": { "icon": "fa-solid fa-certificate", "title": "INVIMA", "description": "Registro sanitario vigente" } },
+      { "type": "cert", "settings": { "icon": "fa-solid fa-flask", "title": "GMP Certified", "description": "Buenas prácticas manufactura" } },
+      { "type": "cert", "settings": { "icon": "fa-solid fa-truck-fast", "title": "Envío Seguro", "description": "A todo Colombia con seguro" } },
+      { "type": "cert", "settings": { "icon": "fa-solid fa-rotate-left", "title": "Garantía 30 días", "description": "Satisfacción garantizada" } }
+    ]
+  }]
+}
+{% endschema %}
