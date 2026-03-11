@@ -1,0 +1,62 @@
+<div class="vl-section" id="productos">
+  <div class="section-header text-center mb-3">
+    <span class="section-tag"><i class="fa-solid fa-fire"></i> {{ section.settings.tag }}</span>
+    <h2 class="section-title">{{ section.settings.title }} <span class="text-green">{{ section.settings.title_accent }}</span></h2>
+    <p class="section-subtitle">{{ section.settings.subtitle }}</p>
+  </div>
+
+  {% assign collection_to_show = collections[section.settings.collection] %}
+  {% if collection_to_show != blank %}
+    <div class="products-grid">
+      {% for product in collection_to_show.products limit: section.settings.products_count %}
+        <div class="product-card">
+          {% if product.compare_at_price > product.price %}
+            <span class="product-badge badge-sale">-{{ product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price }}%</span>
+          {% elsif product.created_at > 'now' | date: '%s' | minus: 604800 | date: '%Y-%m-%d' %}
+            <span class="product-badge badge-new">Nuevo</span>
+          {% endif %}
+          <div class="product-img-wrap">
+            {% if product.featured_image %}
+              {{ product.featured_image | image_url: width: 400 | image_tag: loading: 'lazy', alt: product.title, class: 'product-img' }}
+            {% else %}
+              <span class="product-emoji">💊</span>
+            {% endif %}
+          </div>
+          <div class="product-info">
+            <div class="product-cat">{{ product.type }}</div>
+            <div class="product-name">{{ product.title }}</div>
+            <div class="product-desc">{{ product.description | strip_html | truncate: 100 }}</div>
+            <div class="product-footer">
+              <div>
+                <span class="product-price">{{ product.price | money }}</span>
+                {% if product.compare_at_price > product.price %}
+                  <span class="product-compare">{{ product.compare_at_price | money }}</span>
+                {% endif %}
+              </div>
+              <a href="{{ product.url }}" class="btn-add">
+                <i class="fa-solid fa-plus"></i> Agregar
+              </a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p style="color:var(--gray);text-align:center;padding:3rem">Selecciona una colección en la configuración del tema.</p>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Grid de Productos",
+  "settings": [
+    { "type": "text", "id": "tag", "label": "Etiqueta", "default": "Más Vendidos" },
+    { "type": "text", "id": "title", "label": "Título", "default": "Nuestros" },
+    { "type": "text", "id": "title_accent", "label": "Acento", "default": "Productos" },
+    { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "Selección premium con entrega a todo Colombia" },
+    { "type": "collection", "id": "collection", "label": "Colección a mostrar" },
+    { "type": "range", "id": "products_count", "min": 4, "max": 24, "step": 4, "label": "Número de productos", "default": 8 }
+  ],
+  "presets": [{ "name": "Grid de Productos" }]
+}
+{% endschema %}
