@@ -1,0 +1,56 @@
+<footer class="vl-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="vl-logo" href="{{ routes.root_url }}">VITAL<span>LUCARNO</span></a>
+        <p>{{ section.settings.description }}</p>
+      </div>
+      <div class="footer-col">
+        <h4>Productos</h4>
+        {% for link in linklists[section.settings.products_menu].links %}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        {% endfor %}
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        {% for link in linklists[section.settings.company_menu].links %}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        {% endfor %}
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
+        <a href="tel:{{ section.settings.phone }}">{{ section.settings.phone }}</a>
+        <a href="#">{{ section.settings.address }}</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© {{ 'now' | date: '%Y' }} {{ shop.name }}. {{ section.settings.legal }}</p>
+      <div class="social-links">
+        {% if section.settings.instagram %}<a href="{{ section.settings.instagram }}" class="social-link" target="_blank"><i class="fa-brands fa-instagram"></i></a>{% endif %}
+        {% if section.settings.tiktok %}<a href="{{ section.settings.tiktok }}" class="social-link" target="_blank"><i class="fa-brands fa-tiktok"></i></a>{% endif %}
+        {% if section.settings.whatsapp_url %}<a href="{{ section.settings.whatsapp_url }}" class="social-link" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>{% endif %}
+        {% if section.settings.facebook %}<a href="{{ section.settings.facebook }}" class="social-link" target="_blank"><i class="fa-brands fa-facebook"></i></a>{% endif %}
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "textarea", "id": "description", "label": "Descripción de la tienda", "default": "Suplementos de alto rendimiento para colombianos que buscan resultados reales." },
+    { "type": "link_list", "id": "products_menu", "label": "Menú Productos" },
+    { "type": "link_list", "id": "company_menu", "label": "Menú Empresa" },
+    { "type": "text", "id": "email", "label": "Email", "default": "info@lucarno.com.co" },
+    { "type": "text", "id": "phone", "label": "Teléfono", "default": "+57 315 689 2441" },
+    { "type": "text", "id": "address", "label": "Ciudad", "default": "Barrancabermeja, Santander" },
+    { "type": "text", "id": "legal", "label": "Texto legal", "default": "NIT: 901960925. Todos los derechos reservados." },
+    { "type": "url", "id": "instagram", "label": "Instagram URL" },
+    { "type": "url", "id": "tiktok", "label": "TikTok URL" },
+    { "type": "url", "id": "whatsapp_url", "label": "WhatsApp URL" },
+    { "type": "url", "id": "facebook", "label": "Facebook URL" }
+  ]
+}
+{% endschema %}
