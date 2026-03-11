@@ -1,0 +1,65 @@
+<div class="benefits-wrap" id="beneficios">
+  <div class="benefits-inner">
+    <div>
+      <span class="section-tag"><i class="fa-solid fa-atom"></i> {{ section.settings.tag }}</span>
+      <h2 class="section-title" style="margin-top:1rem">
+        {{ section.settings.title }}<br>
+        <span class="text-green">{{ section.settings.title_accent }}</span>
+      </h2>
+      <div class="benefits-list">
+        {% for block in section.blocks %}
+          <div class="benefit-item" {{ block.shopify_attributes }}>
+            <span class="benefit-icon"><i class="{{ block.settings.icon }}"></i></span>
+            <div>
+              <div class="benefit-title">{{ block.settings.title }}</div>
+              <div class="benefit-desc">{{ block.settings.description }}</div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="benefits-visual">
+      <div class="tech-circle">
+        <div class="tech-circle-inner">
+          <i class="{{ section.settings.circle_icon }} tech-circle-icon"></i>
+          <div class="tech-circle-title">{{ section.settings.circle_title }}</div>
+          <div class="tech-circle-sub">{{ section.settings.circle_sub }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Beneficios",
+  "settings": [
+    { "type": "text", "id": "tag", "label": "Etiqueta", "default": "Ciencia Aplicada" },
+    { "type": "text", "id": "title", "label": "Título", "default": "Beneficios" },
+    { "type": "text", "id": "title_accent", "label": "Acento", "default": "Comprobados" },
+    { "type": "text", "id": "circle_icon", "label": "Icono círculo (FA)", "default": "fa-solid fa-flask" },
+    { "type": "text", "id": "circle_title", "label": "Título círculo", "default": "FÓRMULA PRO" },
+    { "type": "text", "id": "circle_sub", "label": "Subtítulo círculo", "default": "Tecnología de absorción rápida" }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Beneficio",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Icono FA", "default": "fa-solid fa-dumbbell" },
+        { "type": "text", "id": "title", "label": "Título", "default": "Aumento de Masa Muscular" },
+        { "type": "textarea", "id": "description", "label": "Descripción", "default": "Fórmulas con proteínas de alto valor biológico que optimizan la síntesis proteica muscular." }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Beneficios",
+    "blocks": [
+      { "type": "benefit", "settings": { "icon": "fa-solid fa-dumbbell", "title": "Aumento de Masa Muscular", "description": "Fórmulas con proteínas de alto valor biológico que optimizan la síntesis proteica muscular." } },
+      { "type": "benefit", "settings": { "icon": "fa-solid fa-bolt", "title": "Energía y Rendimiento", "description": "Precursores naturales que mejoran la resistencia y reducen la fatiga durante el ejercicio." } },
+      { "type": "benefit", "settings": { "icon": "fa-solid fa-heart-pulse", "title": "Recuperación Acelerada", "description": "Aminoácidos esenciales y antioxidantes que aceleran la recuperación post-entrenamiento." } },
+      { "type": "benefit", "settings": { "icon": "fa-solid fa-brain", "title": "Mental y Foco", "description": "Nootrópicos naturales para máxima concentración y motivación en cada sesión." } }
+    ]
+  }]
+}
+{% endschema %}
