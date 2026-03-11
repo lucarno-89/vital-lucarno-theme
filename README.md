@@ -1,2 +1,2 @@
 # vital-lucarno-theme
-Tema Shopify para tienda Vital Lucarno - Suplementos Colombia
+Tema Shopify personalizado para tienda de suplementos Vital Lucarno - Dropshipping Colombia con Mastershop
