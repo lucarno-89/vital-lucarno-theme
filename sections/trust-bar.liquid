@@ -1,0 +1,36 @@
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    {% for block in section.blocks %}
+      <div class="trust-item" {{ block.shopify_attributes }}>
+        <i class="{{ block.settings.icon }}"></i>
+        <span>{{ block.settings.text }}</span>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Trust Bar",
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Elemento de confianza",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Clase de icono (Font Awesome)", "default": "fa-solid fa-truck-fast" },
+        { "type": "text", "id": "text", "label": "Texto", "default": "Envío gratis desde $150.000" }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Trust Bar",
+    "blocks": [
+      { "type": "item", "settings": { "icon": "fa-solid fa-truck-fast", "text": "Envío gratis desde $150.000" } },
+      { "type": "item", "settings": { "icon": "fa-solid fa-shield-halved", "text": "Compra 100% segura" } },
+      { "type": "item", "settings": { "icon": "fa-solid fa-rotate-left", "text": "30 días de garantía" } },
+      { "type": "item", "settings": { "icon": "fa-solid fa-certificate", "text": "Productos certificados" } },
+      { "type": "item", "settings": { "icon": "fa-brands fa-whatsapp", "text": "Soporte 24/7 WhatsApp" } }
+    ]
+  }]
+}
+{% endschema %}
