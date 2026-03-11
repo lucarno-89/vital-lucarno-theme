@@ -1,0 +1,51 @@
+<div class="vl-section">
+  <div class="section-header text-center mb-3">
+    <span class="section-tag"><i class="fa-solid fa-layer-group"></i> {{ section.settings.tag }}</span>
+    <h2 class="section-title">{{ section.settings.title }} <span class="text-green">{{ section.settings.title_accent }}</span></h2>
+    <p class="section-subtitle">{{ section.settings.subtitle }}</p>
+  </div>
+  <div class="categories-grid">
+    {% for block in section.blocks %}
+      <a href="{{ block.settings.url }}" class="cat-card" {{ block.shopify_attributes }}>
+        <span class="cat-icon">{{ block.settings.emoji }}</span>
+        <div class="cat-name">{{ block.settings.name }}</div>
+        <div class="cat-count">{{ block.settings.count }}</div>
+      </a>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Categorías",
+  "settings": [
+    { "type": "text", "id": "tag", "label": "Etiqueta", "default": "Categorías" },
+    { "type": "text", "id": "title", "label": "Título", "default": "Encuentra Tu" },
+    { "type": "text", "id": "title_accent", "label": "Acento del título", "default": "Suplemento" },
+    { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "Productos formulados para cada objetivo y etapa de tu entrenamiento" }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Categoría",
+      "settings": [
+        { "type": "text", "id": "emoji", "label": "Emoji", "default": "💪" },
+        { "type": "text", "id": "name", "label": "Nombre", "default": "Proteínas" },
+        { "type": "text", "id": "count", "label": "Cantidad", "default": "12 productos" },
+        { "type": "url", "id": "url", "label": "URL de la categoría" }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Categorías",
+    "blocks": [
+      { "type": "category", "settings": { "emoji": "💪", "name": "Proteínas", "count": "12 productos" } },
+      { "type": "category", "settings": { "emoji": "⚡", "name": "Pre-entreno", "count": "8 productos" } },
+      { "type": "category", "settings": { "emoji": "🔥", "name": "Quemadores", "count": "6 productos" } },
+      { "type": "category", "settings": { "emoji": "🧬", "name": "Vitaminas", "count": "10 productos" } },
+      { "type": "category", "settings": { "emoji": "🏋️", "name": "Creatina", "count": "5 productos" } },
+      { "type": "category", "settings": { "emoji": "🌿", "name": "Naturales", "count": "9 productos" } }
+    ]
+  }]
+}
+{% endschema %}
