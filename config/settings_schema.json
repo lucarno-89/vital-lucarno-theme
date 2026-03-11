@@ -1,10 +1,27 @@
 [
-    {
-          "name": "theme_info",
-          "theme_name": "Vital Lucarno",
-          "theme_version": "1.0.0",
-          "theme_author": "Lucarno SAS",
-          "theme_documentation_url": "https://lucarno.com.co",
-          "theme_support_url": "https://lucarno.com.co"
-    }
+  {
+    "name": "theme_info",
+    "theme_name": "Vital Lucarno",
+    "theme_version": "1.0.0",
+    "theme_author": "Lucarno S.A.S",
+    "theme_documentation_url": "https://lucarno.com.co",
+    "theme_support_url": "https://lucarno.com.co"
+  },
+  {
+    "name": "Contact",
+    "settings": [
+      {
+        "type": "text",
+        "id": "whatsapp_number",
+        "label": "Número WhatsApp (con código de país)",
+        "default": "573156892441"
+      },
+      {
+        "type": "text",
+        "id": "announcement_text",
+        "label": "Texto barra de anuncio",
+        "default": "🚀 Envío GRATIS en compras mayores a $150.000 | Colombia"
+      }
+    ]
+  }
 ]
