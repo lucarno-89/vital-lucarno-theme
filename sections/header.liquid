@@ -1,0 +1,32 @@
+<header class="vl-header">
+  <div class="header-inner">
+    <a class="vl-logo" href="{{ routes.root_url }}">
+      {% if section.settings.logo %}
+        {{ section.settings.logo | image_url: width: 180 | image_tag: loading: 'lazy', alt: shop.name }}
+      {% else %}
+        VITAL<span>{{ shop.name | upcase }}</span>
+      {% endif %}
+    </a>
+    <nav class="vl-nav">
+      {% for link in linklists[section.settings.menu].links %}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {% endfor %}
+    </nav>
+    <div class="header-actions">
+      <a href="{{ routes.cart_url }}" class="btn-cart">
+        <i class="fa-solid fa-cart-shopping"></i>
+        Carrito <span class="cart-badge">{{ cart.item_count }}</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo de la tienda" },
+    { "type": "link_list", "id": "menu", "label": "Menú principal", "default": "main-menu" }
+  ]
+}
+{% endschema %}
