@@ -1,6 +1,9 @@
 {
-    "current": "Default",
-    "presets": {
-          "Default": {}
+  "current": "Default",
+  "presets": {
+    "Default": {
+      "whatsapp_number": "573156892441",
+      "announcement_text": "🚀 Envío GRATIS en compras mayores a $150.000 | Colombia"
     }
+  }
 }
