@@ -1,0 +1,30 @@
+<div class="cta-wrap">
+  <div class="cta-inner">
+    <h2 class="cta-title">{{ section.settings.title }} <span class="text-green">{{ section.settings.title_accent }}</span></h2>
+    <p class="cta-sub">{{ section.settings.subtitle }}</p>
+    <div class="cta-buttons">
+      <a href="{{ section.settings.cta1_url }}" class="btn-primary">
+        <i class="fa-solid fa-rocket"></i> {{ section.settings.cta1_text }}
+      </a>
+      <a href="{{ section.settings.cta2_url }}" class="btn-wa">
+        <i class="fa-brands fa-whatsapp"></i> {{ section.settings.cta2_text }}
+      </a>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "CTA Final",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Título", "default": "¿Listo para" },
+    { "type": "text", "id": "title_accent", "label": "Acento", "default": "Potenciarte?" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtítulo", "default": "Únete a más de 5.000 colombianos que ya transformaron su rendimiento con Vital Lucarno. Primer pedido con envío gratis." },
+    { "type": "text", "id": "cta1_text", "label": "Botón 1 texto", "default": "Comprar Ahora" },
+    { "type": "url", "id": "cta1_url", "label": "Botón 1 URL" },
+    { "type": "text", "id": "cta2_text", "label": "Botón 2 texto", "default": "Hablar con Asesor" },
+    { "type": "url", "id": "cta2_url", "label": "Botón 2 URL" }
+  ],
+  "presets": [{ "name": "CTA Final" }]
+}
+{% endschema %}
