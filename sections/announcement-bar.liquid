@@ -1,0 +1,17 @@
+<div class="announcement-bar">
+  {{ section.settings.text }}
+</div>
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Texto del anuncio",
+      "default": "🚀 Envío GRATIS en compras mayores a $150.000 | Colombia"
+    }
+  ]
+}
+{% endschema %}
